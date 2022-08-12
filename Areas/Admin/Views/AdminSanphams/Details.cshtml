@@ -1,0 +1,63 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Sanpham
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1  class="container-fluid pt-4 px-4">Details</h1>
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Chi Tiết Thông Tin Sản Phẩm</h6>
+                <table class="table">
+
+                    <tbody>
+                        <tr>
+                            <td> Tên Sản Phẩm</td>
+                            <td> @Html.DisplayFor(model => model.Tensanpham)</td>
+                        </tr>
+                        <tr>
+                            <td> Hình Ảnh</td>
+                            <td> <img width="200" height="200" src="~/images/HinhAnh/@Model.Hinhanh" alt="@Model.Hinhanh" /></td>
+                        </tr>
+                        <tr>
+                            <td>Mô Tả Sản Phẩm</td>
+                            <td>@Model.Motasanpham</td>
+                        </tr>
+                        <tr>
+                            <td>Dung Lượng</td>
+                            <td>@Model.Dungluong</td>
+                        </tr>
+                        <tr>
+                            <td>Hệ Điều Hành</td>
+                            <td>@Model.Hedieuhanh.Tenhedieuhanh</td>
+                        </tr>
+                        <tr>
+                            <td> Giá Tiền</td>
+                            <td>@Model.Giatien.Value.ToString("#,##0") VND</td>
+                        </tr>
+                        <tr>
+                            <td> Tồn Kho</td>
+                            @if (Model.Tonkho.Value > 0)
+                            {
+                                <td>@Model.Tonkho</td>
+                            }
+                            else
+                            {
+                                <td>Hết Hàng</td>
+                            }
+
+                        </tr>
+                     
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div  class="container-fluid pt-4 px-4">
+    <a asp-action="Edit" asp-route-id="@Model.SanphamId" class="btn btn-danger">Edit</a> |
+    <a asp-action="Index" class="btn btn-danger">Back to List</a>
+</div>

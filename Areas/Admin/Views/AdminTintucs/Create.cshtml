@@ -1,0 +1,85 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Tintuc
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Styles{
+    <link href="~/Summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Summernote/summernote.css" rel="stylesheet" />
+}
+
+<div style="padding-left:50px;">
+
+
+    <h1>Create</h1>
+
+    <h4>Tintuc</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-controller="AdminTintucs" asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Tentintuc" class="control-label">Tên Tin Tức</label>
+                    <input asp-for="Tentintuc" class="form-control bg-white" />
+                    <span asp-validation-for="Tentintuc" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Tieude" class="control-label">Tiêu Đề</label>
+                    <input asp-for="Tieude" class="form-control bg-white" />
+                    <span asp-validation-for="Tieude" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Noidung" class="control-label">Nội Dung</label>
+                    <textarea id="summernote" asp-for="Noidung" class="form-control bg-white" /></textarea>
+                    <span asp-validation-for="Noidung" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Hinhanhtintuc" class="control-label">Hình Ảnh Tin Tức</label>
+                    <input type="file" name="fthumb" asp-for="Hinhanhtintuc" class="form-control bg-white" />
+                    <span asp-validation-for="Hinhanhtintuc" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="TaikhoanId" class="control-label">Tác Giả</label>
+                    <select asp-for="TaikhoanId" class="form-control" asp-items="ViewBag.TaikhoanID"></select>
+                </div>
+                <br />
+                @*<div class="form-group">
+            <label asp-for="Ngaytaotintuc" class="control-label"></label>
+            <input asp-for="Ngaytaotintuc" class="form-control" />
+            <span asp-validation-for="Ngaytaotintuc" class="text-danger"></span>
+        </div>*@
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <div >
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+</div>
+
+
+@section Scripts{ 
+    <script src="~/Summernote/summernote-bs4.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('#summernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic San MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height=200,
+                minHeight=null;
+                maxHeight=null;
+                focus: true
+            });
+        });
+    </script>
+}

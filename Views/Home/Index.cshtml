@@ -1,0 +1,183 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.ModelViews.HomeViewModels;
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Sanpham> allproduct = ViewBag.Allproduct;
+    List<Tintuc> allblog = ViewBag.AllBlog;
+    List<Danhmuc> allcategory = ViewBag.AllCategory;
+}
+
+<!-- Categories Section Begin -->
+<section class="categories">
+    <div class="container">
+        <div class="row">
+            <div class="categories__slider owl-carousel">
+                @foreach (var item in allcategory)
+                {
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg">
+                            <img src="~/images/DanhMuc/@item.Hinhanh" />
+                            <h5><a href="/shop.html?catID=@item.DanhmucId">@item.Tendanhmuc</a></h5>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+<!-- Featured Section Begin -->
+<section class="featured spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Sản Phẩm Mới Nhất</h2>
+                </div>
+                <!--<div class="featured__controls">
+                    <ul>
+                        <li class="active" data-filter="*">All</li>-->
+                @*<li data-filter=".oranges">Oranges </li>
+                    <li data-filter=".fresh-meat">Fresh Meat</li>
+                    <li data-filter=".vegetables">Vegetables</li>
+                    <li data-filter=".fastfood">Fastfood</li>*@
+                <!--</ul>
+                </div>-->
+            </div>
+        </div>
+        <div class="row featured__filter">
+
+            @foreach (var item in allproduct)
+            {
+
+                string url = $"/{item.Tensanpham}-{item.SanphamId}.html";
+                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg" data-setbg="~/image/HinhAnh/@item.Hinhanh">
+                            <a href="@url"> <img src="~/images//HinhAnh/@item.Hinhanh" /></a>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li>
+                                    <div class="add-to-cart">
+                                        <a href=""><i class="fa fa-shopping-cart"></i></a>
+                                        <input hidden asp-for="@item.SanphamId" />
+                                    </div>
+                                    <div class="product__details__quantity" hidden>
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input id="txtsoluong" name="txtsoluong" type="text" value="1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product__details__price" hidden>@item.Giatien.Value</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="@url">@item.Tensanpham</a></h6>
+                            <h5>
+                                @item.Giatien.Value.ToString("#,##0") VND
+
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!-- Featured Section End -->
+<!-- Banner Begin -->
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="~/Assets/Banner/Banner-Big-1920x450-1920x450.jpg" />
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="~/Assets/Banner/xk-smart-800-200-800x200.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner End -->
+<!-- Blog Section Begin -->
+<section class="from-blog spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title from-blog__title">
+                    <h2>From The Blog</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in allblog)
+            {
+                string url = $"/tintuc/{item.Tieude}-{item.TintucId}.html";
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic">
+                            <a href="@url"> <img width="350" height="196" src="~/images/TinTuc/@item.Hinhanhtintuc" /></a>
+                        </div>
+                        <div class="blog__item__text">
+                            <ul>
+                                <li><i class="fa fa-calendar-o"></i> @item.Ngaytaotintuc</li>
+                                <li><i class="fa fa-comment-o"></i> 5</li>
+                            </ul>
+                            <h5><a href="@url">@item.Tentintuc</a></h5>
+                            <p>@item.Noidung </p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $(".add-to-cart").click(function () {
+                    /*var productid = parseFloat($(this).attr("data-productid"));*/
+                    var productid = $('#SanphamId').val();
+                    var soluong = $('#txtsoluong').val();
+                    $.ajax({
+                        url: '/api/cart/add',
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            productID: productid,
+                            amount: soluong
+                        },
+                        success: function (response) {
+                            loadHeaderCart();
+                            location.reload();
+                        },
+                        error: function (error) {
+                            alert("Có một lỗi đã xảy ra:" + error.responseText);
+                        }
+                    });
+                });
+            });
+            function loadHeaderCart() {
+                $("#miniCart").load("/AjaxContent/HeaderCart");
+                $("#numberCart").load("/AjaxContent/NumberCart");
+            };
+
+
+        });
+    </script>
+} 

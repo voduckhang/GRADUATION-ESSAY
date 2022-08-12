@@ -1,0 +1,137 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Tintuc
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Styles{
+    <link href="~/Summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Summernote/summernote.css" rel="stylesheet" />
+}
+<h1 class="container-fluid pt-4 px-4">Edit</h1>
+
+<h4 class="container-fluid pt-4 px-4">Tintuc</h4>
+<hr />
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Chỉnh Sửa Tin Tức</h6>
+                <form asp-controller="AdminTintucs" asp-action="Edit" asp-route-id="@Model.TintucId" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="TintucId" />
+                    <input type="hidden" asp-for="Hinhanhtintuc" />
+
+                    <div class="form-group">
+                        <label asp-for="Tentintuc" class="control-label">Tên Tin Tức</label>
+                        <input asp-for="Tentintuc" class="form-control bg-white" />
+                        <span asp-validation-for="Tentintuc" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Tieude" class="control-label">Tiêu Đề</label>
+                        <input asp-for="Tieude" class="form-control bg-white" />
+                        <span asp-validation-for="Tieude" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Noidung" class="control-label">Nội Dung</label>
+                        <textarea asp-for="Noidung" class="form-control bg-white"></textarea>
+                        <span asp-validation-for="Noidung" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Hinhanhtintuc" class="control-label">Hình Ảnh Tin Tức</label>
+                        <img width="200" height="200" src="~/images/TinTuc/@Model.Hinhanhtintuc" alt="@Model.Hinhanhtintuc" />
+                        <input name="fthumb" type="file" asp-for="Hinhanhtintuc" class="form-control bg-white" />
+                        <span asp-validation-for="Hinhanhtintuc" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="TaikhoanId" class="control-label">Tác Giả</label>
+                        <select asp-for="TaikhoanId" class="form-control" asp-items="ViewBag.TaikhoanID"></select>
+                    </div>
+                    <br />
+
+                    @*<div class="form-group">
+            <label asp-for="Ngaytaotintuc" class="control-label">Ngày tạo Tin Tức</label>
+            <input asp-for="Ngaytaotintuc" class="form-control" class="bg-white" />
+            <span asp-validation-for="Ngaytaotintuc" class="text-danger"></span>
+        </div>*@
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                    <br />
+                    <div>
+                        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="AdminTintucs" asp-action="Edit" asp-route-id="@Model.TintucId" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TintucId" />
+            <input type="hidden" asp-for="Hinhanhtintuc" />
+
+            <div class="form-group">
+                <label asp-for="Tentintuc" class="control-label">Tên Tin Tức</label>
+                <input asp-for="Tentintuc" class="form-control" class="bg-white" />
+                <span asp-validation-for="Tentintuc" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Noidung" class="control-label">Nội Dung</label>
+                <input asp-for="Noidung" class="form-control" class="bg-white" />
+                <span asp-validation-for="Noidung" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Hinhanhtintuc" class="control-label">Hình Ảnh Tin Tức</label>
+                <img width="200" height="200" src="~/images/TinTuc/@Model.Hinhanhtintuc" alt="@Model.Hinhanhtintuc" />
+                <input name="fthumb" type="file" asp-for="Hinhanhtintuc" class="form-control" />
+                <span asp-validation-for="Hinhanhtintuc" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Tieude" class="control-label">Tiêu Đề</label>
+                <input asp-for="Tieude" class="form-control" class="bg-white" />
+                <span asp-validation-for="Tieude" class="text-danger"></span>
+            </div>-->
+            @*<div class="form-group">
+                    <label asp-for="Ngaytaotintuc" class="control-label">Ngày tạo Tin Tức</label>
+                    <input asp-for="Ngaytaotintuc" class="form-control" class="bg-white" />
+                    <span asp-validation-for="Ngaytaotintuc" class="text-danger"></span>
+                </div>*@
+            <!--<div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>-->
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts{
+    <script src="~/Summernote/summernote-bs4.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('#summernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic San MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height=200,
+                minHeight=null;
+                maxHeight=null;
+                focus: true
+            });
+        });
+    </script>
+}

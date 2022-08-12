@@ -1,0 +1,87 @@
+﻿@model IEnumerable<LUANVANTOTNGHIEP_VODUCANKHANG.Models.Nhanvien>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminForAdminLayout.cshtml";
+
+
+}
+@if (User.Identity.IsAuthenticated == true)
+{
+    <div class="col-12" style="color:whitesmoke">
+        <div class="bg-secondary rounded h-100 p-4 ">
+            <h1 class="mb-4">Quản Lý Tài Khoản Nhân Viên</h1>
+            <div class="table-responsive">
+                <p>
+                    <a asp-action="Create" class="btn btn-danger">Create New</a>
+                </p>
+               
+                <table class="table" style="color:whitesmoke">
+                    <thead>
+                        <tr>
+                            <th scope="col">TaikhoanID</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Họ và tên</th>
+
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Phân quyền</th>
+                            <th scope="col">Trạng Thái</th>
+                            <th scope="col"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.TaikhoanId</th>
+                                    <td>@item.Username</td>
+                                    <td>@item.Hovaten</td>
+                                  
+                                    <td>@item.Ngaytao</td>
+                                    <td>@item.Phanquyen.Tenquyentruycap</td>
+                                    <td>@item.Trangthai.Tentrangthai</td>
+                                    <td>
+                                        <a class="btn btn-primary rounded-pill m-2" asp-area="Admin" asp-controller="AdminNhanviens" asp-action="Details" asp-route-id="@item.TaikhoanId">VIEW</a>
+                                        <a class="btn btn-warning rounded-pill m-2" asp-area="Admin" asp-controller="AdminNhanviens" asp-action="Edit" asp-route-id="@item.TaikhoanId">Cập Nhật Trạng Thái Tài Khoản </a>
+                                        @*<a class="btn btn-danger rounded-pill m-2" asp-area="Admin" asp-controller="AdminNhanviens" asp-action="Delete" asp-route-id="@item.TaikhoanId">XÓA</a>*@
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                <a href="/login-admin.html" class="btn btn-outline-light btn-lg px-5">Login</a>
+
+
+
+                            </div>
+
+                            <p>Vui Lòng Đăng Nhập Để Sử Dụng Dịch Vụ</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

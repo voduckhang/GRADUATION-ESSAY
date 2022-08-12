@@ -1,0 +1,59 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Khachhang
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="container-fluid pt-4 px-4">Details</h1>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Chi Tiết Thông Tin Khách Hàng</h6>
+                <table class="table">
+
+                    <tbody>
+                        <tr>
+                            <td> Họ Và Tên</td>
+                            <td> @Html.DisplayFor(model => model.Hovaten)</td>
+                        </tr>
+                        <tr>
+                            <td> Ngày Sinh</td>
+                            <td>@Model.Ngaysinh</td>
+                        </tr>
+                        <tr>
+                            <td> Địa Chỉ</td>
+                            <td>@Model.Diachi</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <td> Số Điện Thoại</td>
+                            <td>@Model.Sodienthoai</td>
+                        </tr>
+                        <tr>
+                            <td> Lần Đăng Nhập Gần Nhất</td>
+                            <td>@Model.Landangnhapgannhat</td>
+                        </tr>
+                        <tr>
+                            <td> Mật Khẩu</td>
+                            <td>@Model.Matkhau</td>
+                        </tr>
+                        <tr>
+                            <td> Trạng Thái</td>
+                            <td>@Model.TrangthaiId</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Edit" asp-route-id="@Model.KhachhangId" class="btn btn-danger">Edit</a> |
+    <a asp-action="Index" class="btn btn-danger">Back to List</a>
+</div>

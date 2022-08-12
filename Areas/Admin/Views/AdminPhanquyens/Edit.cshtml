@@ -1,0 +1,57 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Phanquyen
+
+@{
+    ViewData["Title"] = "Xem Thông Tin Quyền Truy Cập";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminForAdminLayout.cshtml";
+}
+
+
+<div class="container-fluid pt-4 px-4" style="color:whitesmoke">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4" style="color:whitesmoke">
+                <h6 class="mb-4">Chỉnh Sửa Quyền Truy Cập</h6>
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="PhanquyenId" />
+                    <div class="form-group">
+                        <label asp-for="Tenquyentruycap" class="control-label"> Tên Quyền Truy Cập </label>
+                        <input asp-for="Tenquyentruycap" class="form-control bg-white" />
+                        <span asp-validation-for="Tenquyentruycap" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h1>Chỉnh Sửa Tên Quyền Truy Cập</h1>
+
+<h4>Quản Trị Quyền Truy Cập</h4>
+<hr />
+<div class="col-sm-12 col-xl-6">
+    <div class="bg-secondary rounded h-100 p-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PhanquyenId" />
+            <div class="form-group">
+                <label asp-for="Tenquyentruycap" class="control-label"> Tên Quyền Truy Cập </label>
+                <input asp-for="Tenquyentruycap" class="form-control bg-white"  />
+                <span asp-validation-for="Tenquyentruycap" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>*@
+
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Index"  class="btn btn-primary">Back to List</a>
+</div>
+

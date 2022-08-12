@@ -1,0 +1,102 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Nhanvien
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminForAdminLayout.cshtml";
+}
+
+<h1 class="container-fluid pt-4 px-4">Delete</h1>
+
+<h3 class="container-fluid pt-4 px-4">Are you sure you want to delete this?</h3>
+
+<div class="container-fluid pt-4 px-4" style="color:whitesmoke">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4" style="color:whitesmoke">
+                <h6 class="mb-4">Xác nhận xóa tài khoản quản trị</h6>
+                <table class="table" style="color:whitesmoke">
+
+                    <tbody>
+                        <tr>
+
+                            <td> Username</td>
+                            <td> @Html.DisplayFor(model => model.Username)</td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Họ Và Tên</td>
+                            <td> @Html.DisplayFor(model => model.Hovaten)</td>
+                        </tr>
+                        <tr>
+
+                            <td>Mật Khẩu</td>
+                            <td> @Html.DisplayFor(model => model.Matkhau)</td>
+                        </tr>
+                        <tr>
+
+                            <td>Ngày Tạo</td>
+                            <td> @Html.DisplayFor(model => model.Ngaytao)</td>
+                        </tr>
+                        <tr>
+
+                            <td>Phân Quyền ID</td>
+                            <td> @Html.DisplayFor(model => model.PhanquyenId)</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div  class="container-fluid pt-4 px-4">
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TaikhoanId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-danger">Back to List</a>
+    </form>
+</div>
+
+@*<div>
+        <h4>Nhanvien</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Hovaten)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Hovaten)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Matkhau)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Matkhau)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Ngaytao)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Ngaytao)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Phanquyen)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Phanquyen.PhanquyenId)
+            </dd class>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="TaikhoanId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>*@

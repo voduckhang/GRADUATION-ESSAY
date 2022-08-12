@@ -1,0 +1,95 @@
+﻿@model IEnumerable<LUANVANTOTNGHIEP_VODUCANKHANG.Models.Hedieuhanh>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@if (User.Identity.IsAuthenticated == true)
+{
+    <div class="col-12">
+        <div class="bg-secondary rounded h-100 p-4">
+            <h6 class="mb-4">Quản Lý Hệ Điều Hành</h6>
+            <div class="table-responsive">
+                <p>
+                    <a asp-action="Create" class="btn btn-danger">Create New</a>
+                </p>
+                <br />
+                <div>
+                    <form asp-controller="AdminHedieuhanhs" asp-action="Index" class="col-12" style="margin-top:10px;">
+                        <input type="text" id="searchHedieuhanh" name="searchHedieuhanh" placeholder="Search..." style="border-radius:3px;" />
+                        @*<input id="searchTintuc" class="searchTintuc form-control bg-dark border-0" type="text" placeholder="Search" />*@
+                        <button type="submit" class="btn btn-success" style="margin-top:5px;">Search</button>
+                    </form>
+                </div>
+                @*<div class="d-md-flex">
+                        <select class="custom-select" id="idphanquyen" name="idphanquyen" asp-items="ViewBag.Tenquyentruycap">
+                            <option value="0" disabled selected>Chọn Quyền Truy Cập</option>
+                        </select>
+                    </div>*@
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tên Hệ Điều Hành</th>
+
+                            <th scope="col"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.Tenhedieuhanh</th>
+
+
+                                    <td>
+                                        <a class="btn btn-primary rounded-pill m-2" asp-action="Edit" asp-route-id="@item.HedieuhanhId">Edit</a> |
+                                        <a class="btn btn-warning rounded-pill m-2" asp-action="Details" asp-route-id="@item.HedieuhanhId">Details</a> |
+                                        <a class="btn btn-danger rounded-pill m-2" asp-action="Delete" asp-route-id="@item.HedieuhanhId">Delete</a>
+
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                <a href="/login-admin.html" class="btn btn-outline-light btn-lg px-5">Login</a>
+
+
+
+                            </div>
+
+                            <p>Vui Lòng Đăng Nhập Để Sử Dụng Dịch Vụ</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+
+
+
+

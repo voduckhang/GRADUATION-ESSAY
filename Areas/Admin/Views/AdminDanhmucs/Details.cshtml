@@ -1,0 +1,36 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Danhmuc
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="container-fluid pt-4 px-4">Details</h1>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Chi Tiết Hệ Điều Hành</h6>
+                <table class="table">
+
+                    <tbody>
+                        <tr>
+                            <td> Tên Danh Mục</td>
+                            <td> @Html.DisplayFor(model => model.Tendanhmuc)</td>
+                        </tr>
+                        <tr>
+                            <td> Hình Ảnh</td>
+                            <td><img width="150" height="150" src="~/images/DanhMuc/@Model.Hinhanh" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Edit" asp-route-id="@Model.DanhmucId" class="btn btn-danger">Edit</a> |
+    <a asp-action="Index" class="btn btn-danger">Back to List</a>
+</div>

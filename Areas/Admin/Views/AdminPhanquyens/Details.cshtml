@@ -1,0 +1,51 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Phanquyen
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminForAdminLayout.cshtml";
+}
+
+
+<div class="container-fluid pt-4 px-4" style="color:whitesmoke">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12" style="color:whitesmoke">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Chi Tiết Phân Quyền</h6>
+                <table class="table" style="color:whitesmoke">
+
+                    <tbody>
+                        <tr>
+
+                            <td> Phân Quyền ID</td>
+                            <td> @Html.DisplayFor(model => model.PhanquyenId)</td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Tên Quyền Truy Cập</td>
+                            <td> @Html.DisplayFor(model => model.Tenquyentruycap)</td>
+                        </tr>
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="container-fluid pt-4 px-4">
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.PhanquyenId">
+            <button type="button" class="btn btn-info rounded-pill m-2">Edit</button>
+        </a> |
+        <a asp-action="Index">
+            <button type="button" class="btn btn-info rounded-pill m-2">Back To List</button>
+        </a>
+
+    </div>
+</div>

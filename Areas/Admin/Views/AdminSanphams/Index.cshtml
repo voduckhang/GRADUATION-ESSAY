@@ -1,0 +1,187 @@
+﻿@*@model IEnumerable<LUANVANTOTNGHIEP_VODUCANKHANG.Models.Sanpham>*@
+@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<LUANVANTOTNGHIEP_VODUCANKHANG.Models.Sanpham>
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách sản phẩm" + CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@if (User.Identity.IsAuthenticated == true)
+{
+    <div class="col-12">
+        <div class="bg-secondary rounded h-100 p-4">
+            <h2 class="mb-4">Danh Sách Sản Phẩm</h2>
+            <div>
+                <span class="breadcrumb-item active">Danh sách sản phẩm: Page @CurrentPage</span>|
+                <a class="btn btn-primary" asp-controller="AdminSanphams" asp-action="Create"><i class="icon_folder-add"></i><span>Thêm Sản Phẩm </span></a>
+            </div>
+            <br />
+
+            <div>
+                <form asp-controller="AdminSanphams" asp-action="Index" class="col-12" style="margin-top:10px;">
+                    <input type="text" id="searchSanpham" name="searchSanpham" placeholder="Search..." style="border-radius:3px;" />
+                    @*<input id="searchTintuc" class="searchTintuc form-control bg-dark border-0" type="text" placeholder="Search" />*@
+                    <button type="submit" class="btn btn-success" style="margin-top:5px;">Search</button>
+                </form>
+            </div>
+            @*<br />*@
+            @*<select class="custom-select" id="txtCatID" name="txtCatID" asp-items="ViewBag.DanhmucId">
+                    <option value="0" disabled selected>Chọn Danh Mục</option>
+                    <option value="all">ALL</option>
+                </select>*@
+            <br />
+
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID SẢN PHẨM</th>
+                            <th scope="col">TÊN SẢN PHẨM</th>
+
+                            <th scope="col">TÊN DANH MỤC</th>
+                            <th scope="col">HÌNH ẢNH</th>
+                            <th scope="col">TỒN KHO</th>
+
+                            <th scope="col">HỆ ĐIỀU HÀNH</th>
+                            <th scope="col">GIÁ TIỀN</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody id="record_table">
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.SanphamId</th>
+                                    <td>@item.Tensanpham</td>
+
+                                    <td>@item.Danhmuc.Tendanhmuc</td>
+                                    <td>
+                                        <img width="200" height="200" src="~/images/HinhAnh/@item.Hinhanh" alt="@item.Hinhanh" />
+                                    </td>
+                                    <td>
+                                        @if (item.Tonkho.Value > 0)
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Còn Hàng</div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Hết Hàng</div>
+                                            </div>
+                                        }
+                                    </td>
+
+                                    <td>@item.Hedieuhanh.Tenhedieuhanh</td>
+                                    <td>@item.Giatien.Value.ToString("#,##0") VND  </td>
+                                    <td>
+                                        <a class="btn btn-primary rounded-pill m-2" asp-area="Admin" asp-controller="AdminSanphams" asp-action="Details" asp-route-id="@item.SanphamId">VIEW</a>
+                                        <a class="btn btn-warning rounded-pill m-2" asp-area="Admin" asp-controller="AdminSanphams" asp-action="Edit" asp-route-id="@item.SanphamId">SỬA </a>
+                                        <a class="btn btn-danger rounded-pill m-2" asp-area="Admin" asp-controller="AdminSanphams" asp-action="Delete" asp-route-id="@item.SanphamId">XÓA</a>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+
+                    </tbody>
+                </table>
+                <div aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <pager class="pager-controller" list="@Model" asp-area="Admin" asp-controller="AdminSanphams" asp-route-CatID="ViewBag.CurrentCateID" asp-action="Index"></pager>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @section Scripts{
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#txtCatID").change(function () {
+                    /*   var catid = $("txtCatID option:selected").val();*/
+
+                    var catID = jQuery(this).children(":selected").attr("value");
+                    $('#txtCatID option').removeAttr('selected');
+                    $("#txtCatID >[value=" + catID + "]").attr("selected", "true");
+                    $.ajax({
+                        url: '/Admin/AdminSanphams/Filter',
+                        type: "GET",
+                        datatype: "json",
+                        data: {
+                            CatID: catID
+                        },
+                        success: function (results) {
+                            console.log(results);
+                            window.location.href = results.redirectUrl;
+                        },
+                        error: function (xhr) {
+                            alert('error');
+                        }
+                    });
+                });
+
+                $("#keyword").keyup(function () {
+                    var strkeyword = $('#keyword').val();
+                    $.ajax({
+                        url: 'Admin/Timkiem/Timkiemsanpham/',
+                        datatype: "json",
+                        type: "POST",
+                        data: { keyword: strkeyword },
+                        async: true,
+                        success: function (result) {
+
+                            $("#record_table").html("");
+                            $("#record_table").html(result);
+                        },
+                        error: function (xhr) {
+                            alert('error');
+                        }
+
+                    });
+
+                });
+            }
+        </script>
+
+    }
+}
+else
+{
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                <a href="/login-admin.html" class="btn btn-outline-light btn-lg px-5">Login</a>
+
+
+
+                            </div>
+
+                            <p>Vui Lòng Đăng Nhập Để Sử Dụng Dịch Vụ</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+

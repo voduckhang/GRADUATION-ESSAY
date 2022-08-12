@@ -1,0 +1,55 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Donhang
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Donhang</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="KhachhangId" class="control-label"></label>
+                <select asp-for="KhachhangId" class ="form-control" asp-items="ViewBag.KhachhangId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masodonhang" class="control-label"></label>
+                <input asp-for="Masodonhang" class="form-control" />
+                <span asp-validation-for="Masodonhang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ngaytaodon" class="control-label"></label>
+                <input asp-for="Ngaytaodon" class="form-control" />
+                <span asp-validation-for="Ngaytaodon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trangthaidonhang" class="control-label"></label>
+                <input asp-for="Trangthaidonhang" class="form-control" />
+                <span asp-validation-for="Trangthaidonhang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Diachigiaohang" class="control-label"></label>
+                <input asp-for="Diachigiaohang" class="form-control" />
+                <span asp-validation-for="Diachigiaohang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tongtien" class="control-label"></label>
+                <input asp-for="Tongtien" class="form-control" />
+                <span asp-validation-for="Tongtien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

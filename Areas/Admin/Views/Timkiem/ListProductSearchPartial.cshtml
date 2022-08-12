@@ -1,0 +1,41 @@
+﻿@model List<Sanpham>
+
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <th scope="row">@item.SanphamId</th>
+            <td>@item.Tensanpham</td>
+            <td>@item.Motasanpham</td>
+            <td>@item.Danhmuc.Tendanhmuc</td>
+            <td>@item.Hinhanh</td>
+            <td>
+                @if (item.Tonkho.Value > 0)
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>In Stock</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Out Of Stock</div>
+                    </div>
+                }
+            </td>
+            <td>@item.Dungluong</td>
+            <td>@item.Hedieuhanh.Tenhedieuhanh</td>
+            <td>@item.Giatien   </td>
+            <td>
+                <a class="btn btn-primary rounded-pill m-2" asp-area="Admin" asp-controller="AdminSanphams" asp-action="Details" asp-route-id="@item.SanphamId">VIEW</a>
+                <a class="btn btn-warning rounded-pill m-2" asp-area="Admin" asp-controller="AdminSanphams" asp-action="Edit" asp-route-id="@item.SanphamId">SỬA </a>
+                <a class="btn btn-danger rounded-pill m-2" asp-area="Admin" asp-controller="AdminSanphams" asp-action="Delete" asp-route-id="@item.SanphamId">XÓA</a>
+
+            </td>
+        </tr>
+    }
+}

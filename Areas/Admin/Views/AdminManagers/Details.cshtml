@@ -1,0 +1,70 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.AdminManager
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminForAdminLayout.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4" style="color:whitesmoke">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12" style="color:whitesmoke">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Chi Tiết Quản Trị Viên</h6>
+                <table class="table" style="color:whitesmoke">
+
+                    <tbody>
+                        <tr>
+
+                            <td> Username</td>
+                            <td> @Html.DisplayFor(model => model.TenAdmin)</td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Mật Khẩu</td>
+                            <td>  @Html.DisplayFor(model => model.MatkhauAdmin)</td>
+                        </tr>
+
+                        <tr>
+
+                            <td>Quyền Truy Cập</td>
+                            <td>  @Html.DisplayFor(model => model.Phanquyen.Tenquyentruycap)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Edit" asp-route-id="@Model.AdminId" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
+
+
+
+@*<div>
+    <h4>AdminManager</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TenAdmin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TenAdmin)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MatkhauAdmin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MatkhauAdmin)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Phanquyen)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Phanquyen.PhanquyenId)
+        </dd>
+    </dl>
+</div>*@

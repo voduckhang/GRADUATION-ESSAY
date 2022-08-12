@@ -1,0 +1,117 @@
+﻿
+@{
+    LUANVANTOTNGHIEP_VODUCANKHANG.Models.AdminManager adminManager = ViewBag.accadminmanager;
+    //List<AdminManager> adminManagers = ViewBag.accadminmanager;
+}
+@if (User.Identity.IsAuthenticated == true)
+{
+        <div class="sidebar pe-xxl-5 pb-lg-2">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>LUẬN VĂN</h3>
+                </a>
+
+                <div class="navbar-nav w-100">
+                    <a asp-area="Admin" asp-controller="Home" asp-action="index" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>QL  đơn hàng</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a asp-area="Admin" asp-controller="AdminDonhangs" asp-action="Index" class="dropdown-item change">Danh Sach Đơn Hàng</a>
+
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>QL Sản Phẩm</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a asp-area="Admin" asp-controller="AdminSanphams" asp-action="Index" class="dropdown-item change">Danh Sách Sản Phẩm</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>QL Khách Hàng</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a asp-area="Admin" asp-controller="AdminKhachhangs" asp-action="Index" class="dropdown-item change">Danh Sách Khách Hàng</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>QL Danh Mục Sản Phẩm</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a asp-area="Admin" asp-controller="AdminDanhmucs" asp-action="Index" class="dropdown-item change">Danh Sách Danh Mục Sản Phẩm</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>QL Hệ Điều Hành</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a asp-area="Admin" asp-controller="AdminHedieuhanhs" asp-action="Index" class="dropdown-item change">Danh Sách Hệ Điều Hành</a>
+                        </div>
+                    </div>
+                    @*<div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>QL Hệ Thống</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a asp-area="Admin" asp-controller="AdminNhanviens" asp-action="Index" class="dropdown-item change">QL Tài Khoản Quản Trị</a>
+
+                                <a asp-area="Admin" asp-controller="AdminPhanquyens" asp-action="Index" class="dropdown-item change">QL Quyền Truy Cập</a>
+                            </div>
+                        </div>*@
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>QL Tin Tức</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a asp-area="Admin" asp-controller="AdminTintucs" asp-action="Index" class="dropdown-item change">Danh Sách Tin Tức</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+}
+else
+{
+    <div class="sidebar pe-xxl-5 pb-lg-2">
+        <nav class="navbar bg-secondary navbar-dark">
+            <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+            </a>
+
+            <div class="navbar-nav w-100">
+                <a asp-area="Admin" asp-controller="Home" asp-action="index" class="nav-item nav-link active"><i class="fa fa-tachometer-alt "></i>Dashboard</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2" disabled></i>QL  đơn hàng</a>
+
+
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2" disabled></i>QL Sản Phẩm</a>
+
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2" disabled></i>QL Khách Hàng</a>
+
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2" disabled></i>QL Danh Mục Sản Phẩm</a>
+
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2" disabled></i>QL Hệ Điều Hành</a>
+
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2" disabled></i>QL Hệ Thống</a>
+
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2" disabled></i>QL Tin Tức</a>
+
+                </div>
+
+
+            </div>
+        </nav>
+    </div>
+}
+
+
+
+
+<!-- Sidebar Start -->
+<!-- Sidebar End -->

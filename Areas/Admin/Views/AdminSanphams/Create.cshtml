@@ -1,0 +1,74 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Sanpham
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="container-fluid pt-4 px-4">Create</h1>
+<hr />
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Tạo Sản Phẩm Mới</h6>
+                <form asp-controller="AdminSanphams" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Tensanpham" class="control-label">Tên Sản Phẩm</label>
+                        <input asp-for="Tensanpham" class="form-control  bg-white" />
+                        <span asp-validation-for="Tensanpham" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Motasanpham" class="control-label">Mô Tả Sản Phẩm</label>
+                        <textarea asp-for="Motasanpham" class="form-control  bg-white"></textarea>
+                        <span asp-validation-for="Motasanpham" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="DanhmucId" class="control-label">Danh Mục</label>
+                        <select asp-for="DanhmucId" class="form-control" asp-items="ViewBag.DanhmucId"></select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Hinhanh" class="control-label">Hình Ảnh</label>
+                        <input name="fthumb" type="file" asp-for="Hinhanh" class="form-control" />
+                        <span asp-validation-for="Hinhanh" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Tonkho" class="control-label">Tồn Kho</label>
+                        <input asp-for="Tonkho" class="form-control  bg-white" />
+                        <span asp-validation-for="Tonkho" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Dungluong" class="control-label">Dung Lượng</label>
+                        <input asp-for="Dungluong" class="form-control  bg-white" />
+                        <span asp-validation-for="Dungluong" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="HedieuhanhId" class="control-label">Hệ Điều Hành</label>
+                        <select asp-for="HedieuhanhId" class="form-control  bg-white" asp-items="ViewBag.HedieuhanhId"></select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Giatien" class="control-label">Giá Tiền</label>
+                        <input asp-for="Giatien" class="form-control bg-white" />
+                        <span asp-validation-for="Giatien" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
+

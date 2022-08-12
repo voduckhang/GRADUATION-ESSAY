@@ -1,0 +1,48 @@
+﻿@model IEnumerable<LUANVANTOTNGHIEP_VODUCANKHANG.Models.AdminManager>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminForAdminLayout.cshtml";
+}
+
+
+<div class="col-12" style="color:whitesmoke">
+    <div class="bg-secondary rounded h-100 p-4"  style="color:whitesmoke">
+        <h1>Quản Lý Quản Trị Viên</h1>
+        <div class="table-responsive">
+            <p>
+                <a asp-action="Create" class="btn btn-danger">Create New</a>
+            </p>
+            <table class="table" style="color:whitesmoke">
+                <thead>
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Mật Khẩu</th>
+                        <th scope="col">Quyền Truy Cập</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                 
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <th scope="row">@item.TenAdmin</th>
+                        <td>@item.MatkhauAdmin</td>
+                        <td>@item.Phanquyen.Tenquyentruycap</td>
+                        <td>
+                            <a class="btn btn-primary rounded-pill m-2" asp-action="Details" asp-route-id="@item.AdminId">VIEW</a>
+                            <a class="btn btn-warning rounded-pill m-2" asp-action="Edit" asp-route-id="@item.AdminId">SỬA </a>
+                            <a class="btn btn-danger rounded-pill m-2" asp-action="Delete" asp-route-id="@item.AdminId">XÓA</a>
+
+                        </td>
+                    </tr>
+                        }
+                    
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.AdminManager
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminForAdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>AdminManager</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AdminId" /> @Html.DisplayNameFor(model => model.AdminId)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenAdmin" class="control-label"></label>
+                <input asp-for="TenAdmin" class="form-control" />
+                <span asp-validation-for="TenAdmin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhanquyenId" class="control-label"></label>
+                <select asp-for="PhanquyenId" class ="form-control" asp-items="ViewBag.PhanquyenId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MatkhauAdmin" class="control-label"></label>
+                <input asp-for="MatkhauAdmin" class="form-control" />
+                <span asp-validation-for="MatkhauAdmin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

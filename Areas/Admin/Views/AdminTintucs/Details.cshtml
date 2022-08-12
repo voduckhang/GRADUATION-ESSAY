@@ -1,0 +1,75 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Tintuc
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1  class="container-fluid pt-4 px-4">Details</h1>
+
+<div>
+    <h4 class="container-fluid pt-4 px-4">Tintuc</h4>
+    <hr />
+    <!-- Table Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-12">
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">Chi Tiết Tin Tức</h6>
+                    <table class="table">
+                       
+                        <tbody>
+                            <tr>
+
+                                <td> Tên Tin Tức</td>
+                                <td> @Html.DisplayFor(model => model.Tentintuc)</td>
+
+                            </tr>
+                            <tr>
+
+                                <td>Tiêu Đề</td>
+                                <td> @Html.DisplayFor(model => model.Tieude)</td>
+                            </tr>
+                            <tr>
+
+                                <td>Nội Dung</td>
+                                <td> @Html.DisplayFor(model => model.Noidung)</td>
+                            </tr>
+                            <tr>
+
+                                <td>Hình Ảnh Tin Tức</td>
+                                <td> <img width="200" height="200" src="~/images/TinTuc/@Model.Hinhanhtintuc" alt="@Model.Hinhanhtintuc" />  </td>
+                            </tr>
+                            <tr>
+
+                                <td>Tác Giả</td>
+                                <td>@Model.Taikhoan.Hovaten</td>
+                            </tr>
+                            <tr>
+
+                                <td>Ngày Tạo Tin Tức</td>
+                                <td>@Html.DisplayFor(model => model.Ngaytaotintuc)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Table End -->
+
+    @*<dl class="row">
+
+     
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ngaytaotintuc)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ngaytaotintuc)
+        </dd>
+    </dl>*@
+</div>
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Edit" asp-route-id="@Model.TintucId" class="btn btn-primary rounded-pill m-2">Edit</a> |
+    <a asp-action="Index" class="btn btn-primary rounded-pill m-2">Back to List</a>
+</div>

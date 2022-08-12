@@ -1,0 +1,102 @@
+﻿@model List<Donhang>
+
+@if (Model != null && Model.Count() > 0)
+{
+
+    <!-- Shoping Cart Section Begin -->
+
+
+<div class="row">
+    <div class="col-lg-12 text-center" style="border:medium medium; border-bottom:medium">
+        <div class="shoping__cart__table">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th class="shoping__product">ID</th>
+                        <th>TÊN KHÁCH HÀNG</th>
+                        <th>NGÀY TẠO ĐƠN</th>
+                        <th>TRẠNG THÁI ĐƠN HÀNG</th>
+                        <th>ĐỊA CHỈ GIAO HÀNG</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+
+                                <h5>@item.DonhangId</h5>
+                            </td>
+                            <td>
+                                @item.Khachhang.Hovaten
+                            </td>
+                            <td>
+                                @item.Ngaytaodon
+                            </td>
+                            <td>
+                                @item.Trangthaidonhang
+                            </td>
+                            <td>
+                                @item.Diachigiaohang
+                            </td>
+                            <td>
+                                @item.Tongtien.Value.ToString("#,##0") VND
+                            </td>
+
+                            <td>
+                                <a class="xemdonhang" href="javascript:void(0)" data-madonhang="@item.DonhangId">XEM ĐƠN HÀNG</a>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div id="records_table">
+
+    </div>
+</div>
+   
+
+
+    <!-- Shoping Cart Section End -->
+}
+else
+{
+    <p class="col-lg-12" style="text-align:center;font-weight:bold;">CHƯA CÓ ĐƠN HÀNG NÀO!</p>
+}
+
+
+@*@section Scripts{
+        <script>
+            $(document).ready(function () {
+                $(".xemdonhang").click(function () {
+                    var madonhang = $(this).attr("data-madonhang")
+                    $.ajax({
+                        url: '/DonHang/DetailsOrder',
+                        dataType: "json",
+                        type: "POST",
+                        data: { id: madonhang },
+                        async: true,
+                        success: function (results) {
+                            $("#records-table").html("");
+                            $("#records-table").html(results);
+                        },
+                        error: function (xhr) {
+                            alert('error');
+                        }
+                    });
+                });
+            });
+
+
+        </script>
+    }*@

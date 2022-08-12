@@ -1,0 +1,230 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Khachhang
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Donhang> danhsachdonhang = ViewBag.DonHang;
+    LUANVANTOTNGHIEP_VODUCANKHANG.ModelViews.ChangePasswordViewModel changePassword = new LUANVANTOTNGHIEP_VODUCANKHANG.ModelViews.ChangePasswordViewModel();
+    //LUANVANTOTNGHIEP_VODUCANKHANG.ModelViews.XemDonHang xemDonHang = new LUANVANTOTNGHIEP_VODUCANKHANG.ModelViews.XemDonHang();
+}
+
+
+
+
+<h2 style="font-weight:bold; color:forestgreen;">THÔNG TIN CÁ NHÂN</h2>
+<hr />
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <div class="shoping__cart__table">
+            <table border="1" style="font-weight:bold">
+                <thead style="font-weight:bold">
+                    <tr>
+                        <th>Họ Và Tên</th>
+                        <th>Ngày Sinh</th>
+                        <th>Địa Chỉ</th>
+                        <th>Email</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Lần Đăng Nhập Gần Nhất</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody style="font-weight:bold">
+
+                    <tr>
+                        <td>
+
+                            <h5>@Html.DisplayFor(model => model.Hovaten)</h5>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Ngaysinh)
+                        </td>
+                        <td>
+                            <div>
+                                @Html.DisplayFor(model => model.Diachi)
+                            </div>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Sodienthoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Landangnhapgannhat)
+                        </td>
+                        <td> <a class="btn btn-warning rounded-pill m-2" asp-controller="Account" asp-action="EditForCustomer" asp-route-id="@Model.KhachhangId">SỬA </a></td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="hero__categories">
+                <div style="background-color:forestgreen;height:50px">
+                    <p style="text-align:center; color:whitesmoke; font-weight:bolder; line-height:50px;">ĐƠN HÀNG CỦA BẠN</p>
+                </div>
+
+                <div>
+                    @*@await Html.PartialAsync("DonhangPartialView", danhsachdonhang)*@
+                    @if (danhsachdonhang != null && danhsachdonhang.Count() > 0)
+                    {
+
+                        <!-- Shoping Cart Section Begin -->
+
+
+                        <div class="row">
+                            <div class="col-lg-12 text-center" style="border:medium medium; border-bottom:medium">
+                                <div class="shoping__cart__table">
+                                    <table border="1">
+                                        <thead>
+                                            <tr>
+                                                <th class="shoping__product">ID</th>
+                                                <th>TÊN KHÁCH HÀNG</th>
+                                                <th>NGÀY TẠO ĐƠN</th>
+                                                <th>TRẠNG THÁI ĐƠN HÀNG</th>
+                                                <th>ĐỊA CHỈ GIAO HÀNG</th>
+                                                <th>NHÂN VIÊN XÁC NHẬN</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in danhsachdonhang)
+                                            {
+
+                                            <tr>
+                                                <td>
+
+                                                    <h5>@item.DonhangId</h5>
+                                                </td>
+                                                <td>
+                                                    @item.Khachhang.Hovaten
+                                                </td>
+                                                <td>
+                                                    @item.Ngaytaodon
+                                                </td>
+                                                <td>
+                                                    @item.Trangthaidonhang.Tentrangthaidonhang
+                                                </td>
+                                                <td>
+                                                    @item.Diachigiaohang
+                                                </td>
+                                                @if (item.TaikhoanId == null)
+                                                {
+                                                    <td>
+                                                      
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.Taikhoan.Hovaten
+                                                    </td>
+                                                }
+
+                                                <td>
+                                                    @item.Tongtien.Value.ToString("#,##0") VND
+                                                </td>
+
+                                                <td>
+                                                    <a href="/chi-tiet-don-hang.html?donhangID=@item.DonhangId" class="btn btn-primary">XEM ĐƠN HÀNG</a>
+                                                    <hr />
+                                                    @*<a asp-controller="Account" asp-action="HuyDonHang" asp-route-id="@item.DonhangId" class="btn btn-primary">HỦY ĐƠN HÀNG</a>*@
+                                                    @if (item.TrangthaidonhangId == 1)
+                                                    {
+                                                       
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-controller="Home" asp-action="Contact" class="btn btn-primary">HỦY ĐƠN HÀNG</a>
+                                                    }
+
+
+
+                                                    @*<a asp-controller="DonHang" asp-action="DetailsOrder" asp-route-id="@item.DonhangId">XEM ĐƠN HÀNG</a>*@
+                                                </td>
+                                            </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <div id="records_table">
+
+                            </div>
+                        </div>
+
+
+
+                        <!-- Shoping Cart Section End -->
+                    }
+                    else
+                    {
+                        <p class="col-lg-12" style="text-align:center;font-weight:bold;">CHƯA CÓ ĐƠN HÀNG NÀO!</p>
+                    }
+
+                </div>
+                <div>
+
+
+                    @await Html.PartialAsync("ChangePasswordPartialView", changePassword)
+
+                    @*<li class="col-lg-12">
+                            @await Html.PartialAsync("DetailsOrder", xemDonHang)
+                        </li>*@
+
+                </div>
+                <br />
+                <div>
+                    <a style="align-content: center; font-weight: bolder; margin-bottom:10px" class="btn btn-success" href="/dang-xuat.html">LOG OUT</a>
+                </div>
+
+                <div>
+                    <a style="align-content: center; font-weight: bolder; margin-bottom:10px" class="btn btn-success" asp-controller="Home" asp-action="Index">BACK TO HOME</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".xemdonhang").click(function () {
+                var madonhang = $(this).attr("data-madonhang")
+                $.ajax({
+                    url: '/DonHang/DetailsOrder',
+                    datatype: "json",
+                    type: "POST",
+                    data: { id: madonhang },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+
+       
+    </script>
+}

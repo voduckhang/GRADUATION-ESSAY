@@ -1,0 +1,75 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Khachhang
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h2 class="mb-4">Chỉnh Sửa Thông Tin Khách Hàng</h2>
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="KhachhangId" />
+                    <div class="form-group">
+                        <label asp-for="Hovaten" class="control-label"></label>
+                        <input asp-for="Hovaten" class="form-control bg-white" readonly />
+                        <span asp-validation-for="Hovaten" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control bg-white" readonly />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Ngaysinh" class="control-label"></label>
+                        <input asp-for="Ngaysinh" class="form-control bg-white" readonly />
+                        <span asp-validation-for="Ngaysinh" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Diachi" class="control-label"></label>
+                        <input asp-for="Diachi" class="form-control bg-white" readonly />
+                        <span asp-validation-for="Diachi" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Sodienthoai" class="control-label"></label>
+                        <input asp-for="Sodienthoai" class="form-control bg-white" readonly />
+                        <span asp-validation-for="Sodienthoai" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group" hidden>
+                        <label asp-for="Matkhau" class="control-label"></label>
+                        <input asp-for="Matkhau" class="form-control bg-white"/>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Landangnhapgannhat" class="control-label"></label>
+                        <input asp-for="Landangnhapgannhat" class="form-control bg-white" readonly />
+                        <span asp-validation-for="Landangnhapgannhat" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="TrangthaiId" class="control-label">Trạng Thái Hoạt Động</label>
+                        <select asp-for="TrangthaiId" class="form-control" asp-items="ViewBag.TrangthaiId" class="form-control" style="background-color:cadetblue; color:whitesmoke"></select>
+                        <span asp-validation-for="TrangthaiId" class="text-danger"></span>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Index" class="btn btn-danger">Back to List</a>
+</div>
+

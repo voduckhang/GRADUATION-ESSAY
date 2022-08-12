@@ -1,0 +1,127 @@
+﻿@*@model IEnumerable<LUANVANTOTNGHIEP_VODUCANKHANG.Models.Danhmuc>*@
+@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<LUANVANTOTNGHIEP_VODUCANKHANG.Models.Donhang>
+
+@{
+    //int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh Sách Đơn Hàng" + ViewBag.CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    <style>
+        .gradient-custom {
+            /* fallback for old browsers */
+            background: #6a11cb;
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+        }
+    </style>
+}
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    <h1>ĐƠN HÀNG</h1>
+
+
+    <div>
+        <form asp-controller="AdminDonhangs" asp-action="Index" class="col-12" style="margin-top:10px;">
+            <input type="text" id="searchDonhang" name="searchDonhang" placeholder="Search..." style="border-radius:3px;" />
+            @*<input id="searchTintuc" class="searchTintuc form-control bg-dark border-0" type="text" placeholder="Search" />*@
+            <button type="submit" class="btn btn-success" style="margin-top:5px;">Search</button>
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Mã Đơn Hàng
+                </th>
+                <th>
+                    Ngày Tạo Đơn
+                </th>
+                <th>
+                    Trạng Thái Đơn Hàng
+                </th>
+                <th>
+                    Địa Chỉ
+                </th>
+                <th>
+                    Tổng Tiền
+                </th>
+                <th>
+                    Tên Khách Hàng
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DonhangId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ngaytaodon)
+                    </td>
+                    <td>
+                        @item.Trangthaidonhang.Tentrangthaidonhang
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Diachigiaohang)
+                    </td>
+                    <td>
+                        @item.Tongtien.Value.ToString("#,##0") VND
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Khachhang.Hovaten)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.DonhangId">Xác Nhận Đơn Hàng</a> |
+                        <a asp-action="Details" asp-route-id="@item.DonhangId">Xem Đơn Hàng</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+    <div aria-label="Page navigation example">
+        <ul class="pagination">
+            <pager class="pager-controller" list="@Model" asp-area="Admin" asp-controller="AdminDonhangs" asp-action="Index"></pager>
+        </ul>
+    </div>
+
+}
+else
+{
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                <a href="/login-admin.html" class="btn btn-outline-light btn-lg px-5">Login</a>
+
+
+
+                            </div>
+
+                            <p>Vui Lòng Đăng Nhập Để Sử Dụng Dịch Vụ</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+

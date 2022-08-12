@@ -1,0 +1,112 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Nhanvien
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminForAdminLayout.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4" style="color:whitesmoke">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4" style="color:whitesmoke">
+                <h6 class="mb-4">Chi Tiết Tài Khoản Nhân Viên</h6>
+                <table class="table" style="color:whitesmoke">
+
+                    <tbody>
+                        <tr>
+
+                            <td> Username</td>
+                            <td> @Html.DisplayFor(model => model.Username)</td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Họ Và Tên</td>
+                            <td>  @Html.DisplayFor(model => model.Hovaten)</td>
+                        </tr>
+                        <tr>
+
+                            <td>Căn Cước Công Dân</td>
+                            <td>  @Html.DisplayFor(model => model.Cmnd)</td>
+                        </tr>
+                        <tr>
+
+                            <td> Ngày Sinh </td>
+                            <td>  @Html.DisplayFor(model => model.Ngaysinh)</td>
+                        </tr>
+                        <tr>
+
+                            <td>Địa Chỉ</td>
+                            <td>  @Html.DisplayFor(model => model.Diachi)</td>
+                        </tr>
+                        <tr>
+
+                            <td>Giới Tính</td>
+                            <td>  @Html.DisplayFor(model => model.Gioitinh)</td>
+                        </tr>
+
+                        <tr>
+
+                            <td>Mật Khẩu</td>
+                            <td>  @Html.DisplayFor(model => model.Matkhau)</td>
+                        </tr>
+                        <tr>
+
+                            <td>Ngày Tạo</td>
+                            <td>  @Html.DisplayFor(model => model.Ngaytao)</td>
+                        </tr>
+                        <tr>
+
+                            <td>Phân Quyền</td>
+                            <td>  @Html.DisplayFor(model => model.Phanquyen.Tenquyentruycap)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Edit" asp-route-id="@Model.TaikhoanId" class="btn btn-info rounded-pill m-2">Edit</a> |
+    <a asp-action="Index" class="btn btn-info rounded-pill m-2">Back to List</a>
+</div>
+
+@*<h1>Details</h1>
+
+<div>
+    <h4>Nhanvien</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Hovaten)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hovaten)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Matkhau)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Matkhau)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ngaytao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ngaytao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Phanquyen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phanquyen.PhanquyenId)
+        </dd>
+    </dl>
+</div>*@
+

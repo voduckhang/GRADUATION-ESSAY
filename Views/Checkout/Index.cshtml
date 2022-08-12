@@ -1,0 +1,115 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.ModelViews.MuaHangVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<LUANVANTOTNGHIEP_VODUCANKHANG.ModelViews.CartItem> Carts = ViewBag.GioHang;
+
+}
+<!-- Breadcrumb Section Begin -->
+@*<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Checkout</h2>
+                    <div class="breadcrumb__option">
+                        <a href="./index.html">Home</a>
+                        <span>Checkout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+<!-- Breadcrumb Section End -->
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+        <div class="row">
+
+        </div>
+        <div class="checkout__form">
+            <h4>THÔNG TIN ĐẶT HÀNG</h4>
+            <form asp-controller="Checkout" asp-action="Index" method="post">
+                <input hidden asp-for="KhachhangId" type="text" />
+                <div class="row">
+                    <div class="col-lg-6 col-md-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="checkout__input">
+                                    <p>Họ Và Tên<span>*</span></p>
+                                    <input asp-for="FullName" type="text">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="checkout__input">
+                            <p>Số Điện Thoại<span>*</span></p>
+                            <input asp-for="Phone" type="text">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Email<span>*</span></p>
+                            <input asp-for="Email" type="email">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Địa Chỉ<span>*</span></p>
+                            <input asp-for="Address" type="text">
+                            @*<input type="text" placeholder="Apartment, suite, unite ect (optinal)">*@
+                        </div>
+                        <div class="checkout__input">
+                            <p>Lưu ý:</p>
+                            <input asp-for="Note" type="text">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-8">
+                        <div class="checkout__order">
+                            <h4>Đơn Hàng Của Bạn</h4>
+                            <div class="checkout__order__products">
+                                Products
+                               
+                                <span>GIÁ TIỀN</span>
+                            </div>
+                            <ul>
+                                @if (Carts.Count() > 0)
+                                {
+                                    foreach (var item in Carts)
+                                    {
+
+                                        <li>
+                                            @item.product.Tensanpham
+                                          
+                                            <span>@item.TotalMoney.ToString("#,##0") VND</span>
+                                        </li>
+                                    }
+
+                                }
+
+
+                            </ul>
+
+                            <div class="checkout__order__total">Total <span>@Carts.Sum(x => x.TotalMoney).ToString("#,##0") VND</span></div>
+
+                            @*<div class="checkout__input__checkbox">
+                                <label for="payment">
+                                    Check Payment
+                                    <input type="checkbox" id="payment">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkout__input__checkbox">
+                                <label for="paypal">
+                                    Paypal
+                                    <input type="checkbox" id="paypal">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>*@
+                            <button type="submit" class="site-btn">ĐẶT HÀNG</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Checkout Section End -->

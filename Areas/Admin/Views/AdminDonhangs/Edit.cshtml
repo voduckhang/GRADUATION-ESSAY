@@ -1,0 +1,75 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Donhang
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Xác Nhận Đơn Hàng</h6>
+
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="DonhangId" />
+                    <div class="form-group">
+                        <label asp-for="KhachhangId" class="control-label">Họ Và Tên</label>
+                        <select asp-for="KhachhangId" class="form-control" asp-items="ViewBag.KhachhangId"></select>
+                        <span asp-validation-for="KhachhangId" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Masodonhang" class="control-label">Mã Số Đơn Hàng</label>
+                        <input asp-for="Masodonhang" class="form-control" readonly />
+                        <span asp-validation-for="Masodonhang" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Ngaytaodon" class="control-label">Ngày Tạo Đơn</label>
+                        <input asp-for="Ngaytaodon" class="form-control" readonly />
+                        <span asp-validation-for="Ngaytaodon" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Diachigiaohang" class="control-label">Địa Chỉ Giao Hàng</label>
+                        <input asp-for="Diachigiaohang" class="form-control" readonly />
+                        <span asp-validation-for="Diachigiaohang" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Tongtien" class="control-label">Tổng Tiền</label>
+                        <input asp-for="Tongtien" class="form-control" readonly />
+                        <span asp-validation-for="Tongtien" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group bg-gradient-primary">
+                        <label asp-for="TrangthaidonhangId" class="control-label">Xác Nhận Đơn Hàng</label>
+                        <select asp-for="TrangthaidonhangId" class="form-control" asp-items="ViewBag.TrangthaidonhangId" style="background-color:cadetblue; color:whitesmoke"></select>
+                        <span asp-validation-for="TrangthaidonhangId" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group bg-gradient-primary">
+                        <label asp-for="TaikhoanId" class="control-label">Nhân Viên Xác Nhận</label>
+                        <select asp-for="TaikhoanId" class="form-control" asp-items="ViewBag.TaikhoanId" style="background-color:cadetblue; color:whitesmoke"></select>
+                        <span asp-validation-for="TaikhoanId" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
+

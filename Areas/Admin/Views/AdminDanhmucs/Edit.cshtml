@@ -1,0 +1,50 @@
+﻿@model LUANVANTOTNGHIEP_VODUCANKHANG.Models.Danhmuc
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="container-fluid pt-4 px-4">Edit</h1>
+<hr />
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Chỉnh Sửa Danh Mục</h6>
+                <form asp-controller="AdminDanhmucs" asp-action="Edit" asp-route-id="@Model.DanhmucId" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="DanhmucId" />
+                    <input type="hidden" asp-for="Hinhanh" />
+                    <div class="form-group">
+                        <label asp-for="Tendanhmuc" class="control-label">Tên Danh Mục</label>
+                        <br />
+                        <input asp-for="Tendanhmuc" class="form-control bg-white" />
+                        <br />
+                        <span asp-validation-for="Tendanhmuc" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <label asp-for="Hinhanh" class="control-label">Hình Ảnh</label>
+                        <br />
+                        <img width="200" height="200" src="~/images/DanhMuc/@Model.Hinhanh" alt="@Model.Hinhanh" />
+                        <br />
+                        <input name="fthumb" type="file" asp-for="Hinhanh" class="form-control" />
+                        <br />
+                        <span asp-validation-for="Hinhanh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid pt-4 px-4">
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
+
